@@ -10,15 +10,18 @@ public class App {
         boolean check = true;
         while (check) {
         check = false;
+            //System takes user input looking for code of either 1,2,3 or 827
         System.out.println("Enter Code: ");
         System.out.println("");
         int code = s0.nextInt();
+           //if "1", program enters stat editor function
         if (code == 1) {
             System.out.println(" ");
             System.out.println(">Enter Stat Editor");
             getPlayerCode(playerCode);
             players.statEdit(playerlist.pList.get(playerCode));
         }
+            //if "2", program enters stat check function
         else if (code == 2) {
             System.out.println("");
             System.out.println(">Enter Stat Check");
@@ -27,12 +30,14 @@ public class App {
             System.out.println(playerlist.pList.get(playerCode));
             System.out.println(" ");
         }
+            //if "3", program enters player creator function
         else if (code == 3) {
             System.out.println("");
             System.out.println(">Enter Player Creator");
             players myPlayer = playerlist.playerCreator();
             playerlist.addPlayer(myPlayer); 
         }
+            //827 is the killswitch which will shut off the program
         else if (code == 827) {
             killswitch();
     }
@@ -44,6 +49,7 @@ public class App {
     }
 }
     static void killswitch() {
+        //killswitch function
         Boolean check1 = true;
             while (check1) {
             check1 = false;
@@ -63,6 +69,7 @@ public class App {
         }
         }
     static void getPlayerCode(int a) {
+        //function that takes user input as an int
         System.out.println("Enter player code:");
         System.out.println(" ");
         a = s0.nextInt();
