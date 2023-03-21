@@ -34,4 +34,11 @@ public class playerlist {
         return newPlayers;
     }
     
+    //need function that writes arraylist input to txt file, should be automatic after player is entered into system, this is how we'll save the information when users exit program
+    
+    //need function that copies information from txt file line by line to arraylist as soon as program starts; this will allow previous inputs to be added back to arraylist, allowing their stats to be edited again
+    
+    //im assuming these functions will probably go here since it has to do with arraylist, but work on this outside the projects code and when you get it implement it here
+    
+    
 }
