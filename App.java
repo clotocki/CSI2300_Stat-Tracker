@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.Random;
 
 public class App {
     static int killswitch = 0;
@@ -40,7 +39,7 @@ public class App {
         }
             //827 is the killswitch which will shut off the program
         else if (code == 827) {
-            killswitch();
+            killswitchFunc();
     }
         else {
             System.out.println("Incorrect Value");
@@ -50,7 +49,7 @@ public class App {
     }
     }
 }
-    static void killswitch() {
+    static void killswitchFunc() {
         //killswitch function
         Boolean check1 = true;
             while (check1) {
