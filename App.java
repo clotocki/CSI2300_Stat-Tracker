@@ -46,6 +46,7 @@ public class App {
             System.out.println("Incorrect Value");
             check = true;
         }
+            //add another function that sorts data if time allows
     }
     }
 }
