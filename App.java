@@ -8,6 +8,7 @@ public class App {
         int playerCode = 0;
         while (killswitch == 0) {
         boolean check = true;
+        //while loop allows system to keep taking inputs until killswitch function is called
         while (check) {
         check = false;
             //System takes user input looking for code of either 1,2,3 or 827
@@ -69,7 +70,7 @@ public class App {
         }
         }
     static void getPlayerCode(int a) {
-        //function that takes user input as an int
+        //function to retrieve player ID from users
         System.out.println("Enter player code:");
         System.out.println(" ");
         a = s0.nextInt();
