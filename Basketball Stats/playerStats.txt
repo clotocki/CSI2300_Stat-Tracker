@@ -1,0 +1,9 @@
+1,Joel Embiid,2057,630,260,107,66
+2,Nikola Jokic,1670,797,664,44,83
+3,Jayson Tatum,2106,621,328,51,72
+4,Kyrie Irving,1528,292,311,44,62
+5,Jaden Ivey,1074,265,343,17,55
+6,Paolo Banchero,1373,466,256,36,59
+7,Luka Doncic,2032,505,537,32,87
+8,Damian Lillard,1866,277,425,18,50
+9,Luke,123,123,123,123,123
