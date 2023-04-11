@@ -20,8 +20,9 @@ public class BBallStatTracker {
             System.out.println("1. Create player");
             System.out.println("2. Update player stats");
             System.out.println("3. View player stats");
-            System.out.println("4. View player IDs"); // Still need to be fixed
-            System.out.println("8. Exit");
+            System.out.println("4. Player ID log");
+            // System.out.println("5. Delete players"); BUGGED
+            System.out.println("0. Exit");
 
             System.out.print("--> ");
             int choice = input.nextInt(); 
@@ -41,19 +42,10 @@ public class BBallStatTracker {
                 case 4:
                     viewPlayerIds();
                     break;
-                // Want to add function to delete players by just using their ID
-                case 5:
+                /*case 5: 
                     deletePlayer();
-                    break;
-                // Want to add function to see stat leaders in each category, or maybe a top 3-5 in each stat
-                case 6:
-                    statLeaders(); // NOT DONE YET
-                    break;
-                // MVP function that uses some algorithm we make to determine who the league MVP is
-                case 7:
-                    leagueMVP(); // NOT DONE YET
-                    break;
-                case 8:
+                    break; */ 
+                case 0:
                     exit = true;
                     System.out.println("Goodbye");
                     break;
@@ -123,6 +115,7 @@ public class BBallStatTracker {
                     int blocks = getStat("blocks");
                     int steals = getStat("steals");
 
+                    // formats the string when putting it into the text file
                     String updatedPlayerData = String.format("%d,%s,%d,%d,%d,%d,%d", id, parts[1], points, rebounds, assists, blocks, steals);
 
                     buffer.append(updatedPlayerData);
@@ -186,61 +179,80 @@ public class BBallStatTracker {
         }
     }
 
-    private static void viewPlayerIds() { 
-        // FIXME: Going to make it so that this function can display the names of all players and their IDs
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                System.out.println("Player ID: " + parts[0]); // parts[0] is just the ID that is stored
-            }
-
-            reader.close();
-        } 
-        catch (IOException e) {
-            System.out.println("An error occurred while viewing player IDs: " + e.getMessage());
-        }
-    }
-
-    private static int getNextPlayerId() { // this incrememnts the player ID for the next player by adding 1
+    private static int getNextPlayerId() {
         int nextId = 1;
-
+    
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
-
+    
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 int playerId = Integer.parseInt(parts[0]);
-
+    
                 if (playerId >= nextId) {
-                    nextId = playerId + 1; // adds 1 to nextId to get ready for the next player's ID
+                    nextId = playerId + 1;
                 }
             }
-
+    
             reader.close();
-        } 
-        catch (FileNotFoundException e) {
-            // if a file doesn't already exist then it'll just start the IDs at 1 (the default)
-        } 
-        catch (IOException e) {
-            System.out.println("An error occurred while getting next player ID: " + e.getMessage());
+        } catch (FileNotFoundException e) {
+            // ignore, file will be created when first player is added
+        } catch (IOException e) {
+            System.out.println("An unexpected error occurred while getting next player ID: " + e.getMessage());
         }
-
+    
         return nextId;
     }
-
-    // still need to do these 3 
-    private static void deletePlayer() { // FIXME
-
+    
+    private static void viewPlayerIds() { // lets user view all player IDs their player names
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+            System.out.println("\nPlayer ID Log:");
+    
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                System.out.println(parts[0] + ": " + parts[1]);
+            }
+    
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("An unexpected error occurred while viewing the player ID log: " + e.getMessage());
+        }
     }
-
-    private static void statLeaders() { // FIXME
-
-    }
-
-    private static void leagueMVP() { // FIXME
-    }
+    
+    // getting a bug when I try to use viewPlayerIds() after i delete a player
+   /* private static void deletePlayer() { // lets you delete a player by ID
+        System.out.println("Enter player ID to delete:");
+        System.out.print("--> ");
+        int id = input.nextInt();
+        input.nextLine();
+    
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            StringBuffer buffer = new StringBuffer();
+            String line;
+    
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                int playerId = Integer.parseInt(parts[0]);
+    
+                if (playerId != id) { 
+                    buffer.append(line);
+                    buffer.append("\n"); // new line in the next line of text file
+                }
+            }
+    
+            reader.close();
+    
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            writer.write(buffer.toString());
+            writer.close();
+    
+            System.out.println("Player with ID " + id + " has been deleted.");
+        } catch (IOException e) {
+            System.out.println("An unexpected error occurred while deleting player: " + e.getMessage());
+        }
+    } */
 }
